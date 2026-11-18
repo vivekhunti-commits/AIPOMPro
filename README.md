@@ -49,7 +49,19 @@ Run an individual spec with Playwright's CLI:
 ```bash
 npx playwright test tests/login.spec.ts
 npx playwright test tests/end-to-end-order.spec.ts
+npx playwright test tests/apiTestmode.spec.ts
 ```
+
+The Authors API tests accept an optional `FAKE_REST_API_KEY` environment variable for the `api-key` header.
+
+The Books API tests use the `LIBRARY_API_KEY` environment variable for authenticated requests. On Windows PowerShell, set it before running the API spec:
+
+```powershell
+$env:LIBRARY_API_KEY = "your-api-key"
+npx playwright test tests/apiTestmode.spec.js
+```
+
+The authenticated cases are skipped when the variable is unset; the invalid-key case can run independently.
 
 After a test run, open the report with:
 
